@@ -25,7 +25,6 @@ const CartList = (props) => {
                         width: "70%",
                         alignItems: "center",
                         display: "flex",
-                        // justifyContent: "space-between",
                       }}
                     >
                       <div style={{ width: "50%" }}>

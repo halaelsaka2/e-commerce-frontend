@@ -23,23 +23,32 @@ export function getAllSubCategory() {
 
 export function addSubCat(subCategory) {
   return async function (dispatch) {
-    const response = await SubCategoryService.addSubCat(subCategory);
-    dispatch(addSubCatSuccess(response.data));
+    try {
+      const response = await SubCategoryService.addSubCat(subCategory);
+      dispatch(addSubCatSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 
 export function deleteSubCat(id) {
   return async function (dispatch) {
-    console.log(id);
-
-    const response = await SubCategoryService.deleteSubCat(id);
-    console.log(response.data);
-    dispatch(deleteSubCatSuccess(response.data));
+    try {
+      const response = await SubCategoryService.deleteSubCat(id);
+      dispatch(deleteSubCatSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 export function editSubCat(role) {
   return async function (dispatch) {
-    const response = await SubCategoryService.editSubCat(role);
-    dispatch(editSubCatSuccess(response.data));
+    try {
+      const response = await SubCategoryService.editSubCat(role);
+      dispatch(editSubCatSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }

@@ -25,21 +25,32 @@ export function getAllCategories() {
 
 export function editCategory(category) {
   return async function (dispatch) {
-    const response = await CategoryService.editCategory(category);
-    dispatch(editCategorySuccess(response.data));
+    try {
+      const response = await CategoryService.editCategory(category);
+      dispatch(editCategorySuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 export function addCategory(category) {
   return async function (dispatch) {
-    const response = await CategoryService.addCategory(category);
-    dispatch(addCategorySuccess(response.data));
+    try {
+      const response = await CategoryService.addCategory(category);
+      dispatch(addCategorySuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 
 export function deleteCategory(id) {
   return async function (dispatch) {
-    const response = await CategoryService.deleteCategory(id);
-    console.log(response.data);
-    dispatch(deleteCategorySuccess(response.data));
+    try {
+      const response = await CategoryService.deleteCategory(id);
+      dispatch(deleteCategorySuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }

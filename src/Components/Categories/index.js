@@ -14,7 +14,6 @@ const Categories = (props) => {
   const [mode, setMode] = useState("add");
 
   useEffect(() => {
-    console.log(props.deletedCategory);
     if (props.deletedCategory !== null) {
       if (props.deletedCategory.deleted === true) {
         message.success(props.deletedCategory.msg);
@@ -95,7 +94,6 @@ const Categories = (props) => {
       title: "Name",
       dataIndex: "name",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.name.localeCompare(b.name),

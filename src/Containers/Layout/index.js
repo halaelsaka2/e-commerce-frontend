@@ -4,7 +4,7 @@ import CategoryHeader from "../../Components/CategoryHeader";
 import { withRouter } from "react-router";
 import Nav from "../../Components/Nav";
 import SiderBar from "../../Components/Sider";
-const { Content, Footer } = Layout;
+const { Content} = Layout;
 const BasicLayout = (props) => {
   return (
     <Layout>

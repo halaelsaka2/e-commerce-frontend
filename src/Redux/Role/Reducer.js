@@ -18,6 +18,18 @@ export default function RoleReducer(state = initialState, action) {
         ...state,
         roles: state.roles.map((role) => (role = role.id === action.data.id ? action.data : role)),
       };
+    case types.SET_STATUS:
+      return {
+        ...state,
+        status: action.data,
+      };
+
+    case types.RETURN_STATUS:
+      return {
+        ...state,
+        status: null,
+      };
+
     default:
       return state;
   }

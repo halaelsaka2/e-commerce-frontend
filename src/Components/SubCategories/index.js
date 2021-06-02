@@ -14,7 +14,6 @@ const SubCategories = (props) => {
   const [mode, setMode] = useState("add");
 
   useEffect(() => {
-    console.log(props.deletedSub);
     if (props.deletedSub !== null) {
       if (props.deletedSub.deleted === true) {
         message.success(props.deletedSub.msg);
@@ -97,7 +96,6 @@ const SubCategories = (props) => {
       title: "Name",
       dataIndex: "name",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.name.localeCompare(b.name),
@@ -106,7 +104,6 @@ const SubCategories = (props) => {
       title: "Category",
       dataIndex: "categoryId",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.categoryId.localeCompare(b.categoryId),

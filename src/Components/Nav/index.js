@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout, List, Col, Row, Badge, Menu, Dropdown } from "antd";
 import { connect } from "react-redux";
 import { getAllProducts } from "../../Redux/Product/Actions";
@@ -10,8 +10,6 @@ import { logout } from "../../Redux/User/Actions";
 
 const { Header } = Layout;
 const Nav = (props) => {
-  const [toggle, setToggle] = useState(true);
-  console.log(toggle);
   const logOut = () => {
     localStorage.clear();
     props.logout();
@@ -49,23 +47,11 @@ const Nav = (props) => {
     ),
     localStorage.getItem("roleId") === "1" ? (
       props.location.pathname.startsWith("/adminPage") ? (
-        <Link
-          to="/"
-          onClick={() => {
-            setToggle(!toggle);
-          }}
-          style={{ color: "black" }}
-        >
+        <Link to="/" style={{ color: "black" }}>
           Home
         </Link>
       ) : (
-        <Link
-          to="/adminPage"
-          onClick={() => {
-            setToggle(!toggle);
-          }}
-          style={{ color: "black" }}
-        >
+        <Link to="/adminPage" style={{ color: "black" }}>
           Admin Page
         </Link>
       )

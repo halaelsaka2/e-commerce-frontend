@@ -16,31 +16,39 @@ export function deleteRoleSuccess(data) {
 
 export function getAllRoles() {
   return async function (dispatch) {
-    try {
-      const response = await roleService.getAllRoles();
-      dispatch(getAllRolesSuccess(response.data));
-    } catch (error) {
-      console.log(error.response.status);
-    }
+    const response = await roleService.getAllRoles();
+    dispatch(getAllRolesSuccess(response.data));
   };
 }
 
 export function addRole(role) {
   return async function (dispatch) {
-    const response = await roleService.addRole(role);
-    dispatch(addRoleSuccess(response.data));
+    try {
+      const response = await roleService.addRole(role);
+      dispatch(addRoleSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 
 export function deleteRole(id) {
   return async function (dispatch) {
-    const response = await roleService.deleteRole(id);
-    dispatch(deleteRoleSuccess(response.data));
+    try {
+      const response = await roleService.deleteRole(id);
+      dispatch(deleteRoleSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 export function editRole(role) {
   return async function (dispatch) {
-    const response = await roleService.editRole(role);
-    dispatch(editRoleSuccess(response.data));
+    try {
+      const response = await roleService.editRole(role);
+      dispatch(editRoleSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }

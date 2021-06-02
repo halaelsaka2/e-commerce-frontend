@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
-import { Modal, Input, Form, Col, Row, Radio, Button, Switch, Select } from "antd";
+import React from "react";
+import { Modal, Input, Form, Col, Row, Radio, Button, Select } from "antd";
 import { connect } from "react-redux";
-import { getAllRoles } from "../../Redux/Role/Actions";
 
 const { Option } = Select;
-const UserModal = ({ mode, getAllRoles, data, roles, visible, handleOk, handleCancel }) => {
-
+const UserModal = ({ mode, data, roles, visible, handleOk, handleCancel }) => {
   const formItemLayout = {
     labelCol: { span: 24 },
     wrapperCol: { span: 20 },

@@ -1,11 +1,11 @@
 import React from "react";
 import { Table, Col } from "antd";
 
-const TableOfData = ({ data, columns }) => {
+const TableOfData = ({ data, columns, type }) => {
   return (
     <>
       <Col span={24}>
-        <Table columns={columns} bordered dataSource={data} />
+        <Table columns={columns} bordered dataSource={data} pagination={type !== "product"} />
       </Col>
     </>
   );

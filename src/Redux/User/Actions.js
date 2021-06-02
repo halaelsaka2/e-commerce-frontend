@@ -33,27 +33,38 @@ export function logout() {
 export function register(values) {
   return async function (dispatch) {
     const response = await userService.register(values);
-    console.log(response.data);
     dispatch(registerSuccess(response.data));
   };
 }
 
 export function getAllUsers() {
   return async function (dispatch) {
-    const response = await userService.getAllUsers();
-    dispatch(getAllUsersSuccess(response.data));
+    try {
+      const response = await userService.getAllUsers();
+      dispatch(getAllUsersSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 
 export function addUser(user) {
   return async function (dispatch) {
-    const response = await userService.addUser(user);
-    dispatch(addUserSuccess(response.data));
+    try {
+      const response = await userService.addUser(user);
+      dispatch(addUserSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 export function editUser(user) {
   return async function (dispatch) {
-    const response = await userService.editUser(user);
-    dispatch(editUserSuccess(response.data));
+    try {
+      const response = await userService.editUser(user);
+      dispatch(editUserSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }

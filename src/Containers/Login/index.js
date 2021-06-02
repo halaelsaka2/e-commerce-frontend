@@ -3,14 +3,12 @@ import { Form, Input, Button, message, Divider, Col } from "antd";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { login } from "../../Redux/User/Actions";
-import { Link } from "react-router-dom";
 const Login = (props) => {
   const onFinish = (values) => {
     props.login(values);
   };
 
   useEffect(() => {
-    console.log(props.userData);
     if (props.userData.isAuthenticate && props.userData.isAuthenticate === true) {
       if (props.userData.roleId === 1) {
         props.history.push("/adminPage");

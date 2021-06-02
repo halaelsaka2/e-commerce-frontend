@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, message, Modal, Row, Tooltip } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Button, message, Row, Tooltip } from "antd";
+import { EditOutlined } from "@ant-design/icons";
 import TableOfData from "../Table";
 import UserModal from "../UserModal";
 import PlusIcon from "../PlusIcon";
 import { getAllUsers, editUser, addUser } from "../../Redux/User/Actions";
 import { connect } from "react-redux";
-const { confirm } = Modal;
 
 const Users = (props) => {
   const [visible, setVisible] = useState(false);
@@ -80,7 +79,6 @@ const Users = (props) => {
       title: "User Name",
       dataIndex: "userName",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.userName.localeCompare(b.userName),
@@ -89,7 +87,6 @@ const Users = (props) => {
       title: "Email",
       dataIndex: "email",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.email.localeCompare(b.email),
@@ -98,7 +95,6 @@ const Users = (props) => {
       title: "Role",
       dataIndex: "roleId",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.roleId.localeCompare(b.roleId),
@@ -107,7 +103,6 @@ const Users = (props) => {
       title: "Is Active",
       dataIndex: "isActive",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.isActive.localeCompare(b.isActive),

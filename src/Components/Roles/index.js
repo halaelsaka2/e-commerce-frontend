@@ -14,7 +14,6 @@ const Roles = (props) => {
   const [mode, setMode] = useState("add");
 
   useEffect(() => {
-    console.log(props.deletedRole);
     if (props.deletedRole !== null) {
       if (props.deletedRole.deleted === true) {
         message.success(props.deletedRole.msg);
@@ -45,7 +44,6 @@ const Roles = (props) => {
       align: "right",
       onOk() {
         props.deleteRole(id);
-        // message.success(" Role Delete Successfully");x
       },
       onCancel() {},
     });
@@ -100,7 +98,6 @@ const Roles = (props) => {
       title: "Name",
       dataIndex: "name",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.unit_name.localeCompare(b.unit_name),

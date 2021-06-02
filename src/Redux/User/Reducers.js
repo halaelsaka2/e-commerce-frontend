@@ -5,7 +5,6 @@ export default function UserReducer(state = initialState, action) {
   let user;
   switch (action.type) {
     case types.LOGIN:
-      console.log(action.data);
       user = action.data;
       localStorage.setItem("token", user.token);
       localStorage.setItem("userName", user.userName);
@@ -13,9 +12,7 @@ export default function UserReducer(state = initialState, action) {
       return { ...state, userData: user };
 
     case types.REGISTER:
-      console.log(action.data);
       user = action.data;
-      console.log(user);
       localStorage.setItem("token", user.token);
       localStorage.setItem("userName", user.userName);
       localStorage.setItem("roleId", user.roleId);
@@ -30,7 +27,6 @@ export default function UserReducer(state = initialState, action) {
         allUsers: state.allUsers.map((user) => (user = user.id === action.data.id ? action.data : user)),
       };
     case types.ADD_USER:
-      console.log(action.data);
       if (action.data.isSignUp === true) {
         return {
           ...state,

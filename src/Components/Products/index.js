@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, message, Modal, Row, Tooltip } from "antd";
+import { Button, Col, message, Modal, Pagination, Row, Tooltip } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import TableOfData from "../Table";
 import ProductModal from "../ProductModal";
@@ -13,13 +13,13 @@ const Products = (props) => {
   const [visible, setVisible] = useState(false);
   const [product, setProduct] = useState({});
   const [mode, setMode] = useState("add");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    props.getAllProducts();
+    props.getAllProducts(page);
   }, []);
 
   useEffect(() => {
-    console.log(props.deletedProduct);
     if (props.deletedProduct !== null) {
       if (props.deletedProduct.deleted === true) {
         message.success(props.deletedProduct.msg);
@@ -104,7 +104,6 @@ const Products = (props) => {
       title: "Name",
       dataIndex: "name",
       key: "2",
-      // ellipsis: true,
       align: "center",
       width: 90,
       sorter: (a, b) => a.name.localeCompare(b.name),
@@ -123,7 +122,6 @@ const Products = (props) => {
       key: "4",
       align: "center",
       width: 90,
-      // sorter: (a, b) => a.price.localeCompare(b.price),
     },
     {
       title: "Description",
@@ -141,11 +139,23 @@ const Products = (props) => {
       width: 40,
     },
   ];
+  const SearchPaginate = (page, pageSize) => props.getAllProducts(page);
+
   return (
     <>
       <PlusIcon add={addProduct} type="Product" />
       <Row gutter={24}>
-        <TableOfData data={data} columns={columns} />
+        <TableOfData data={data} columns={columns} type="product" />
+      </Row>
+      <Row>
+        <Col span={24} align="right" style={{margin:"1rem 0"}}>
+          <Pagination
+            onChange={SearchPaginate}
+            total={props.productsCount}
+            showTotal={(total, range) => `${total} Products`}
+            defaultCurrent={1}
+          />
+        </Col>
       </Row>
       {visible && (
         <ProductModal
@@ -163,6 +173,7 @@ const Products = (props) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     products: state.ProductReducer.products,
+    productsCount: state.ProductReducer.productsCount,
     deletedProduct: state.ProductReducer.deletedProduct,
   };
 };

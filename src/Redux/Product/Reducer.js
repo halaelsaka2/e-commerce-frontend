@@ -4,7 +4,15 @@ import initialState from "../initialState";
 export default function ProductReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_ALL_PRODUCTS:
-      return { ...state, products: action.data };
+      let products = [];
+      let productsCount = 0;
+      
+      if (Object.keys(action.data).length > 0) {
+        products = action.data.rows;
+        productsCount = action.data.count;
+      }
+      console.log(productsCount,products);
+      return { ...state, products, productsCount };
     case types.GET_PRODUCTS_BY_SUB_ID:
       return { ...state, products: action.data };
     case types.EDIT_PRODUCT:

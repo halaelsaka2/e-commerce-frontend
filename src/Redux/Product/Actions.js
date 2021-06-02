@@ -21,9 +21,10 @@ function deleteProductSuccess(data) {
   return { type: types.DELETE_PRODUCT, data };
 }
 //thunk
-export function getAllProducts() {
+export function getAllProducts(page) {
   return async function (dispatch) {
-    const response = await ProductService.getAllProducts();
+    const response = await ProductService.getAllProducts(page);
+    console.log(response.data);
     dispatch(getAllProductsSuccess(response.data));
   };
 }
@@ -43,21 +44,32 @@ export function getProductById(id) {
 
 export function editProduct(product) {
   return async function (dispatch) {
-    const response = await ProductService.editProduct(product);
-    dispatch(editProductSuccess(response.data));
+    try {
+      const response = await ProductService.editProduct(product);
+      dispatch(editProductSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 export function addProduct(product) {
   return async function (dispatch) {
-    const response = await ProductService.addProduct(product);
-    dispatch(addProductSuccess(response.data));
+    try {
+      const response = await ProductService.addProduct(product);
+      dispatch(addProductSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
 
 export function deleteProduct(id) {
   return async function (dispatch) {
-    const response = await ProductService.deleteProduct(id);
-    console.log(response.data);
-    dispatch(deleteProductSuccess(response.data));
+    try {
+      const response = await ProductService.deleteProduct(id);
+      dispatch(deleteProductSuccess(response.data));
+    } catch (error) {
+      dispatch({ type: types.SET_STATUS, data: error.response.status });
+    }
   };
 }
