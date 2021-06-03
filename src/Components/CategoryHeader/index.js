@@ -18,8 +18,8 @@ const CategoryHeader = (props) => {
   }, [props.categories]);
 
   const selectSubHandler = (subId) => {
-    props.getAllProducts(page, subId);
     props.setPage(1);
+    props.getAllProducts(1, subId);
   };
   return (
     <Header style={{ background: "#FFF" }}>

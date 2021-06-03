@@ -19,7 +19,7 @@ const CartList = (props) => {
           {props.cartProducts.length > 0 ? (
             props.cartProducts.map((product) => {
               return (
-                <Card key={product.id} style={{ marginTop: 16 }} title={product.name}>
+                <Card key={product.id} title={product.name}>
                   <div
                     style={{
                       width: "70%",
@@ -43,7 +43,7 @@ const CartList = (props) => {
               );
             })
           ) : (
-            <Card style={{ marginTop: 16, textAlign: "center" }}>
+            <Card style={{ textAlign: "center" }}>
               <h3>No Products</h3>
             </Card>
           )}
