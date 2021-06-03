@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Switch, Route } from "react-router-dom";
-import Layout from "../Layout";
+import BasicLayout from "../Layout";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import Login from "../Login";
@@ -14,9 +14,12 @@ import AdminPage from "../AdminPage";
 import NotAuthorizationPage from "../NotAuthorizedPage";
 
 const App = (props) => {
+  const [page, setPage] = useState(1);
+
   const addToCart = (product) => {
     props.addToCart(product);
   };
+  
   return (
     <>
       {props.status === 403 ? (
@@ -26,11 +29,11 @@ const App = (props) => {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/adminPage" component={AdminPage} />
-          <Layout>
-            <Route path="/" exact render={(props) => <ProductList addToCart={addToCart} />} />
+          <BasicLayout page={page} setPage={setPage}>
+            <Route path="/" exact render={(props) => <ProductList page={page} setPage={setPage} addToCart={addToCart} />} />
             <Route path="/addProduct" component={AddProduct} />
             <Route path="/cartList" render={(props) => <CartList />} />
-          </Layout>
+          </BasicLayout>
         </Switch>
       )}
     </>

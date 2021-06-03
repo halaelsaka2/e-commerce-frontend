@@ -16,7 +16,7 @@ const Products = (props) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    props.getAllProducts(page);
+    if (props.products.length === 0) props.getAllProducts(page);
   }, []);
 
   useEffect(() => {
@@ -148,7 +148,7 @@ const Products = (props) => {
         <TableOfData data={data} columns={columns} type="product" />
       </Row>
       <Row>
-        <Col span={24} align="right" style={{margin:"1rem 0"}}>
+        <Col span={24} align="right" style={{ margin: "1rem 0" }}>
           <Pagination
             onChange={SearchPaginate}
             total={props.productsCount}

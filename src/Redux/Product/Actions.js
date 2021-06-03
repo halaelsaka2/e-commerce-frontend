@@ -21,9 +21,9 @@ function deleteProductSuccess(data) {
   return { type: types.DELETE_PRODUCT, data };
 }
 //thunk
-export function getAllProducts(page) {
+export function getAllProducts(page, subId) {
   return async function (dispatch) {
-    const response = await ProductService.getAllProducts(page);
+    const response = await ProductService.getAllProducts(page, subId);
     console.log(response.data);
     dispatch(getAllProductsSuccess(response.data));
   };

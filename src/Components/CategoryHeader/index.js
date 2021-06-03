@@ -3,14 +3,14 @@ import { Layout, Menu } from "antd";
 import { connect } from "react-redux";
 
 import { getAllCategories } from "../../Redux/Category/Actions";
-import { getProductsBySubId } from "../../Redux/Product/Actions";
+import { getProductsBySubId, getAllProducts } from "../../Redux/Product/Actions";
 const { SubMenu } = Menu;
 const { Header } = Layout;
 const CategoryHeader = (props) => {
   const [categories, setCategories] = useState([]);
-
+  const page = props.page;
   useEffect(() => {
-    props.getAllCategories();
+    if (props.categories.length === 0) props.getAllCategories();
   }, []);
 
   useEffect(() => {
@@ -18,7 +18,8 @@ const CategoryHeader = (props) => {
   }, [props.categories]);
 
   const selectSubHandler = (subId) => {
-    props.getProductsBySubId(subId);
+    props.getAllProducts(page, subId);
+    props.setPage(1);
   };
   return (
     <Header style={{ background: "#FFF" }}>
@@ -44,6 +45,6 @@ const mapStateToProps = (state, ownProps) => {
     categories: state.CategoryReducer.categories,
   };
 };
-const mapDispatchToProps = { getAllCategories, getProductsBySubId };
+const mapDispatchToProps = { getAllCategories, getAllProducts, getProductsBySubId };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryHeader);

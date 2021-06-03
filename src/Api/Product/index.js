@@ -1,7 +1,7 @@
 import axiosInstance from "../axiosInstance";
 
-const getAllProducts = async (page) => {
-  return await axiosInstance.get(`/products/${page}`);
+const getAllProducts = async (page, subId) => {
+  return await axiosInstance.get(`/products/${page}?subId=${subId}`);
 };
 const getProductsBySubId = async (subId) => {
   return await axiosInstance.get(`/products/getBySubId/${subId}`);

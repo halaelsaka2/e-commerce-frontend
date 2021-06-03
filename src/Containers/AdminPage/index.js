@@ -16,9 +16,9 @@ import { getAllCategories } from "../../Redux/Category/Actions";
 
 const App = (props) => {
   useEffect(() => {
-    props.getAllRoles();
-    props.getAllSubCategory();
-    props.getAllCategories();
+    if (props.roles.length === 0) props.getAllRoles();
+    if (props.subCategories.length === 0) props.getAllSubCategory();
+    if (props.categories.length === 0) props.getAllCategories();
   }, []);
   return (
     <>
@@ -39,6 +39,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     roles: state.RoleReducer.roles,
     subCategories: state.SubCategoryReducer.subCategories,
+    categories: state.CategoryReducer.categories,
   };
 };
 const mapDispatchToProps = { getAllRoles, getAllSubCategory, getAllCategories };
